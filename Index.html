@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Engels met Philip — Persoonlijke Engelse bijles voor kinderen</title>
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --primary-dark: #1e3a8a;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Navigatie */
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      margin-left: 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    /* Hero / Bovenaan */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #ffffff;
+      padding: 4.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      opacity: 0.95;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #111827;
+      font-weight: 700;
+      padding: 0.9rem 1.8rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1.05rem;
+      transition: background 0.2s, transform 0.1s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Algemene secties */
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      color: var(--primary);
+    }
+
+    .highlight-box {
+      background: #eff6ff;
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 12px 12px 0;
+      margin-top: 1.25rem;
+    }
+
+    /* Tarieven */
+    .price-tag {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin: 0.5rem 0;
+    }
+
+    .price-free {
+      color: var(--success);
+    }
+
+    /* Aanmeldformulier */
+    .form-wrapper {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+      margin-top: 1.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-bottom: 0.35rem;
+    }
+
+    input, select, textarea {
+      padding: 0.75rem 0.9rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #ffffff;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+    }
+
+    .submit-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.85rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+    }
+
+    .btn-email {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.85rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn-email:hover {
+      background: var(--primary-dark);
+    }
+
+    .direct-contact {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .direct-contact a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.85rem;
+      }
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigatie -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">Engels met Philip</a>
+      <nav>
+        <a href="#voor-wie">Voor wie?</a>
+        <a href="#over-mij">Over mij</a>
+        <a href="#tarieven">Locatie &amp; Tarief</a>
+        <a href="#aanmelden">Aanmelden</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <span class="badge">Basisschoolkinderen • Baarn &amp; Eemnes</span>
+      <h1>Persoonlijke Engelse bijles voor basisschoolkinderen</h1>
+      <p>
+        Spelenderwijs en met zelfvertrouwen beter worden in Engels — van iemand die <strong>4 jaar in Ierland</strong> heeft gewoond!
+      </p>
+      <a href="#aanmelden" class="btn-primary">Plan een gratis proefles (30 min)</a>
+    </div>
+  </div>
+
+  <!-- Voor wie -->
+  <section id="voor-wie">
+    <h2>Voor wie is de bijles?</h2>
+    <p>
+      Mijn bijlessen zijn speciaal voor basisschoolkinderen (tot ongeveer 11 jaar) die graag beter willen worden in Engels. Of je kind nu moeite heeft met woordjes op school, goed voorbereid naar de middelbare school wil, op vakantie zelf een ijsje wil bestellen of met Engelstalige familie wil praten: we passen elke les aan op wat jouw kind leuk vindt en nodig heeft.
+    </p>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>📚 Voor school</h3>
+        <p>Extra uitleg bij Engelse les op de basisschool en een sterke basis voor de brugklas.</p>
+      </div>
+      <div class="card">
+        <h3>✈️ Vakantie &amp; Familie</h3>
+        <p>Zelfverzekerd leren praten, bestellen en gesprekken voeren in het buitenland of met familie.</p>
+      </div>
+      <div class="card">
+        <h3>🎯 Leuk &amp; interactief</h3>
+        <p>Geen saaie rijtjes stampen, maar afwisselende oefeningen, handige woordjeslijsten en taalquizzen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Over mij -->
+  <section id="over-mij">
+    <div class="card">
+      <h2>Wie ben ik?</h2>
+      <p>
+        Hoi! Ik ben <strong>Philip</strong>, 13 jaar, en ik zit op middelbare school <strong>Atelier Het Gooi (Agora)</strong> in Eemnes. Ik heb <strong>4 jaar in Ierland</strong> gewoond (en daarnaast ook nog <strong>2 jaar in Duitsland</strong>), waardoor ik vloeiend Engels spreek en gewend ben om in een internationale omgeving te zijn.
+      </p>
+      <div class="highlight-box">
+        Voor een school-challenge ben ik mijn eigen bijlesbedrijfje begonnen om jongere kinderen op een leuke manier met de Engelse taal te helpen. Omdat ik zelf nog niet zo lang geleden op de basisschool zat, weet ik precies hoe ik alles rustig en begrijpelijk kan uitleggen!
+      </div>
+    </div>
+  </section>
+
+  <!-- Praktische info & Tarieven -->
+  <section id="tarieven">
+    <h2>Praktische info &amp; Tarieven</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>📍 Locatie</h3>
+        <p>
+          Op een rustige en fijne plek in de buurt: in de <strong>lokale bibliotheek.</strong>.
+        </p>
+      </div>
+      <div class="card">
+        <h3>🕒 Wanneer</h3>
+        <p>
+          <strong>Na schooltijd</strong>, op een dag en tijdstip die voor jullie en voor mij goed uitkomt.
+        </p>
+      </div>
+      <div class="card">
+        <h3>💶 Tarieven</h3>
+        <p class="price-tag price-free">Gratis</p>
+        <p><strong>Eerste proefles (30 minuten)</strong> om kennis te maken.</p>
+        <hr style="margin: 0.75rem 0; border: 0; border-top: 1px solid var(--border);" />
+        <p class="price-tag">€ 7,50 <span style="font-size: 1rem; font-weight: 500;">/ uur</span></p>
+        <p>Losse bijles van 60 minuten.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aanmeldformulier -->
+  <section id="aanmelden">
+    <h2>Meld je aan voor een gratis proefles!</h2>
+    <p>
+      Lijkt het je leuk om kennis te maken of heb je eerst nog een vraag? Vul hieronder het formulier in, dan opent direct een berichtje via WhatsApp of e-mail om een datum te prikken.
+    </p>
+
+    <div class="form-wrapper">
+      <form id="signupForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="ouderNaam">Naam ouder/verzorger *</label>
+            <input type="text" id="ouderNaam" required placeholder="Bijv. Lisa de Vries" />
+          </div>
+          <div class="form-group">
+            <label for="kindInfo">Naam &amp; leeftijd van het kind *</label>
+            <input type="text" id="kindInfo" required placeholder="Bijv. Sam (9 jaar)" />
+          </div>
+          <div class="form-group">
+            <label for="telefoon">Telefoonnummer (WhatsApp) *</label>
+            <input type="tel" id="telefoon" required placeholder="Bijv. 06 12345678" />
+          </div>
+          <div class="form-group">
+            <label for="email">E-mailadres *</label>
+            <input type="email" id="email" required placeholder="naam@voorbeeld.nl" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="doel">Waar wil je mee oefenen? *</label>
+          <select id="doel" onchange="toggleAndersVeld()">
+            <option value="School">School</option>
+            <option value="Anders">Anders...</option>
+          </select>
+        </div>
+
+        <div class="form-group hidden" id="andersGroep">
+          <label for="andersTekst">Waar wil je precies mee oefenen? *</label>
+          <input type="text" id="andersTekst" placeholder="Bijv. Voor op vakantie, familie of gewoon voor de lol" />
+        </div>
+
+        <div class="form-group">
+          <label for="opmerking">Voorkeursdagen na school / opmerkingen</label>
+          <textarea id="opmerking" rows="3" placeholder="Bijv. Maandag- of woensdagmiddag rond 15:30 uur"></textarea>
+        </div>
+
+        <div class="submit-buttons">
+          <button type="button" class="btn-whatsapp" onclick="verstuurWhatsApp()">
+            💬 Verstuur via WhatsApp
+          </button>
+          <button type="button" class="btn-email" onclick="verstuurEmail()">
+            ✉️ Verstuur via E-mail
+          </button>
+        </div>
+      </form>
+
+      <div class="direct-contact">
+        <span><strong>Direct contact:</strong></span>
+        <a href="https://wa.me/31645574529" target="_blank">📱 WhatsApp / Bel: 06 - 45 57 45 29</a>
+        <a href="mailto:philipsluijs@gmail.com">✉️ philipsluijs@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Engels met Philip • Baarn &amp; Eemnes
+  </footer>
+
+  <script>
+    function toggleAndersVeld() {
+      const doel = document.getElementById('doel').value;
+      const andersGroep = document.getElementById('andersGroep');
+      const andersTekst = document.getElementById('andersTekst');
+
+      if (doel === 'Anders') {
+        andersGroep.classList.remove('hidden');
+        andersTekst.required = true;
+      } else {
+        andersGroep.classList.add('hidden');
+        andersTekst.required = false;
+        andersTekst.value = '';
+      }
+    }
+
+    function verzamelGegevens() {
+      const form = document.getElementById('signupForm');
+      if (!form.reportValidity()) {
+        return null;
+      }
+      const ouder = document.getElementById('ouderNaam').value.trim();
+      const kind = document.getElementById('kindInfo').value.trim();
+      const tel = document.getElementById('telefoon').value.trim();
+      const mail = document.getElementById('email').value.trim();
+      const doelKeuze = document.getElementById('doel').value;
+      const andersUitleg = document.getElementById('andersTekst').value.trim();
+      const doel = doelKeuze === 'Anders' ? `Anders (${andersUitleg})` : doelKeuze;
+      const opmerking = document.getElementById('opmerking').value.trim() || 'Geen';
+
+      return (
+        `Hoi Philip! Ik wil graag een gratis proefles Engels aanvragen:\n\n` +
+        `• Ouder/verzorger: ${ouder}\n` +
+        `• Kind: ${kind}\n` +
+        `• Telefoon/WhatsApp: ${tel}\n` +
+        `• E-mail: ${mail}\n` +
+        `• Reden / oefenen met: ${doel}\n` +
+        `• Voorkeursdagen/opmerking: ${opmerking}`
+      );
+    }
+
+    function verstuurWhatsApp() {
+      const tekst = verzamelGegevens();
+      if (!tekst) return;
+      const url = `https://wa.me/31645574529?text=${encodeURIComponent(tekst)}`;
+      window.open(url, '_blank');
+    }
+
+    function verstuurEmail() {
+      const tekst = verzamelGegevens();
+      if (!tekst) return;
+      const onderwerp = encodeURIComponent('Aanmelding gratis proefles - Engels met Philip');
+      const body = encodeURIComponent(tekst);
+      window.location.href = `mailto:philipsluijs@gmail.com?subject=${onderwerp}&body=${body}`;
+    }
+  </script>
+
+</body>
+</html>
