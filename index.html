@@ -230,41 +230,47 @@
       box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
     }
 
-    .submit-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-top: 0.5rem;
-    }
-
-    .btn-whatsapp {
-      background: #25d366;
-      color: #ffffff;
-      font-weight: 700;
-      padding: 0.85rem 1.5rem;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .btn-whatsapp:hover {
-      background: #1ebe5d;
-    }
-
-    .btn-email {
+    .btn-submit {
       background: var(--primary);
       color: #ffffff;
       font-weight: 700;
-      padding: 0.85rem 1.5rem;
+      padding: 0.95rem 1.8rem;
       border: none;
       border-radius: 10px;
-      font-size: 1rem;
+      font-size: 1.05rem;
       cursor: pointer;
+      transition: background 0.2s;
     }
 
-    .btn-email:hover {
+    .btn-submit:hover {
       background: var(--primary-dark);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .status-message {
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      font-weight: 600;
+      display: none;
+    }
+
+    .status-success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .status-error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
     }
 
     .direct-contact {
@@ -320,7 +326,7 @@
   <!-- Hero -->
   <div class="hero">
     <div class="hero-content">
-      <span class="badge">Basisschoolkinderen • Baarn &amp; Eemnes</span>
+      <span class="badge">Basisschoolkinderen • </span>
       <h1>Persoonlijke Engelse bijles voor basisschoolkinderen</h1>
       <p>
         Spelenderwijs en met zelfvertrouwen beter worden in Engels — van iemand die <strong>4 jaar in Ierland</strong> heeft gewoond!
@@ -372,7 +378,7 @@
       <div class="card">
         <h3>📍 Locatie</h3>
         <p>
-          Op een rustige en fijne plek in de buurt: in de <strong>lokale bibliotheek</strong> (Baarn of Eemnes).
+          Op een rustige en fijne plek in de buurt: in de <strong>lokale bibliotheek</strong>.
         </p>
       </div>
       <div class="card">
@@ -396,33 +402,39 @@
   <section id="aanmelden">
     <h2>Meld je aan voor een gratis proefles!</h2>
     <p>
-      Lijkt het je leuk om kennis te maken of heb je eerst nog een vraag? Vul hieronder het formulier in, dan opent direct een berichtje via WhatsApp of e-mail om een datum te prikken.
+      Lijkt het je leuk om kennis te maken of heb je eerst nog een vraag? Vul hieronder het formulier in, dan neem ik zo snel mogelijk contact met jullie op via WhatsApp of e-mail.
     </p>
 
     <div class="form-wrapper">
       <form id="signupForm">
+        <!-- Vervang hieronder 83ca8113-64c9-44e8-92d2-b844c4ab51ee door je sleutel van web3forms.com -->
+        <input type="hidden" name="access_key" value="83ca8113-64c9-44e8-92d2-b844c4ab51ee" />
+        <input type="hidden" name="subject" value="Nieuwe aanmelding proefles - Engels met Philip" />
+        <input type="hidden" name="from_name" value="Engels met Philip Website" />
+        <input type="checkbox" name="botcheck" class="hidden" />
+
         <div class="form-grid">
           <div class="form-group">
             <label for="ouderNaam">Naam ouder/verzorger *</label>
-            <input type="text" id="ouderNaam" required placeholder="Bijv. Lisa de Vries" />
+            <input type="text" id="ouderNaam" name="Naam_ouder" required placeholder="Bijv. Lisa de Vries" />
           </div>
           <div class="form-group">
             <label for="kindInfo">Naam &amp; leeftijd van het kind *</label>
-            <input type="text" id="kindInfo" required placeholder="Bijv. Sam (9 jaar)" />
+            <input type="text" id="kindInfo" name="Kind" required placeholder="Bijv. Sam (9 jaar)" />
           </div>
           <div class="form-group">
             <label for="telefoon">Telefoonnummer (WhatsApp) *</label>
-            <input type="tel" id="telefoon" required placeholder="Bijv. 06 12345678" />
+            <input type="tel" id="telefoon" name="Telefoonnummer" required placeholder="Bijv. 06 12345678" />
           </div>
           <div class="form-group">
             <label for="email">E-mailadres *</label>
-            <input type="email" id="email" required placeholder="naam@voorbeeld.nl" />
+            <input type="email" id="email" name="email" required placeholder="naam@voorbeeld.nl" />
           </div>
         </div>
 
         <div class="form-group">
           <label for="doel">Waar wil je mee oefenen? *</label>
-          <select id="doel" onchange="toggleAndersVeld()">
+          <select id="doel" name="Reden" onchange="toggleAndersVeld()">
             <option value="School">School</option>
             <option value="Anders">Anders...</option>
           </select>
@@ -430,26 +442,21 @@
 
         <div class="form-group hidden" id="andersGroep">
           <label for="andersTekst">Waar wil je precies mee oefenen? *</label>
-          <input type="text" id="andersTekst" placeholder="Bijv. Voor op vakantie, familie of gewoon voor de lol" />
+          <input type="text" id="andersTekst" name="Reden_uitleg" placeholder="Bijv. Voor op vakantie, familie of gewoon voor de lol" />
         </div>
 
         <div class="form-group">
           <label for="opmerking">Voorkeursdagen na school / opmerkingen</label>
-          <textarea id="opmerking" rows="3" placeholder="Bijv. Maandag- of woensdagmiddag rond 15:30 uur"></textarea>
+          <textarea id="opmerking" name="Opmerkingen" rows="3" placeholder="Bijv. Maandag- of woensdagmiddag rond 15:30 uur"></textarea>
         </div>
 
-        <div class="submit-buttons">
-          <button type="button" class="btn-whatsapp" onclick="verstuurWhatsApp()">
-            💬 Verstuur via WhatsApp
-          </button>
-          <button type="button" class="btn-email" onclick="verstuurEmail()">
-            ✉️ Verstuur via E-mail
-          </button>
-        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Aanmelding versturen</button>
+
+        <div id="statusMessage" class="status-message"></div>
       </form>
 
       <div class="direct-contact">
-        <span><strong>Direct contact:</strong></span>
+        <span><strong>Liever direct een berichtje sturen?</strong></span>
         <a href="https://wa.me/31645574529" target="_blank">📱 WhatsApp / Bel: 06 - 45 57 45 29</a>
         <a href="mailto:philipsluijs@gmail.com">✉️ philipsluijs@gmail.com</a>
       </div>
@@ -457,7 +464,7 @@
   </section>
 
   <footer>
-    © 2026 Engels met Philip • Baarn &amp; Eemnes
+    © 2026 Engels met Philip •
   </footer>
 
   <script>
@@ -476,45 +483,51 @@
       }
     }
 
-    function verzamelGegevens() {
-      const form = document.getElementById('signupForm');
-      if (!form.reportValidity()) {
-        return null;
+    const form = document.getElementById('signupForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusMessage = document.getElementById('statusMessage');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Bezig met versturen...';
+      statusMessage.className = 'status-message';
+      statusMessage.textContent = '';
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: json
+        });
+
+        const result = await response.json();
+
+        if (response.status === 200) {
+          statusMessage.className = 'status-message status-success';
+          statusMessage.textContent = 'Bedankt! Je aanmelding is verstuurd. Ik neem zo snel mogelijk contact met jullie op via WhatsApp of e-mail.';
+          form.reset();
+          toggleAndersVeld();
+        } else {
+          statusMessage.className = 'status-message status-error';
+          statusMessage.textContent = 'Er ging iets mis bij het versturen. Probeer het opnieuw of stuur direct een WhatsApp-berichtje naar 06 - 45 57 45 29.';
+        }
+      } catch (error) {
+        statusMessage.className = 'status-message status-error';
+        statusMessage.textContent = 'Geen verbinding mogelijk. Stuur gerust direct een WhatsApp-berichtje naar 06 - 45 57 45 29.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Aanmelding versturen';
       }
-      const ouder = document.getElementById('ouderNaam').value.trim();
-      const kind = document.getElementById('kindInfo').value.trim();
-      const tel = document.getElementById('telefoon').value.trim();
-      const mail = document.getElementById('email').value.trim();
-      const doelKeuze = document.getElementById('doel').value;
-      const andersUitleg = document.getElementById('andersTekst').value.trim();
-      const doel = doelKeuze === 'Anders' ? `Anders (${andersUitleg})` : doelKeuze;
-      const opmerking = document.getElementById('opmerking').value.trim() || 'Geen';
-
-      return (
-        `Hoi Philip! Ik wil graag een gratis proefles Engels aanvragen:\n\n` +
-        `• Ouder/verzorger: ${ouder}\n` +
-        `• Kind: ${kind}\n` +
-        `• Telefoon/WhatsApp: ${tel}\n` +
-        `• E-mail: ${mail}\n` +
-        `• Reden / oefenen met: ${doel}\n` +
-        `• Voorkeursdagen/opmerking: ${opmerking}`
-      );
-    }
-
-    function verstuurWhatsApp() {
-      const tekst = verzamelGegevens();
-      if (!tekst) return;
-      const url = `https://wa.me/31645574529?text=${encodeURIComponent(tekst)}`;
-      window.open(url, '_blank');
-    }
-
-    function verstuurEmail() {
-      const tekst = verzamelGegevens();
-      if (!tekst) return;
-      const onderwerp = encodeURIComponent('Aanmelding gratis proefles - Engels met Philip');
-      const body = encodeURIComponent(tekst);
-      window.location.href = `mailto:philipsluijs@gmail.com?subject=${onderwerp}&body=${body}`;
-    }
+    });
   </script>
 
 </body>
